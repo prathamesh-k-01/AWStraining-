@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <h2>Create New Task</h2>
+    <form action="{{ url_for('create_task') }}" method="post">
+        <input type="text" name="title" placeholder="Title" required>
+        <textarea name="description" placeholder="Description"></textarea>
+        <label>
+            <input type="checkbox" name="done"> Done
+        </label>
+        <button type="submit">Create Task</button>
+    </form>
+{% endblock %}

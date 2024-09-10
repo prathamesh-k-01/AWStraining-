@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <h2>Edit Task</h2>
+    <form action="{{ url_for('edit_task', task_id=task['id']) }}" method="post">
+        <input type="text" name="title" value="{{ task['title'] }}" required>
+        <textarea name="description">{{ task['description'] }}</textarea>
+        <label>
+            <input type="checkbox" name="done" {% if task['done'] %}checked{% endif %}> Done
+        </label>
+        <button type="submit">Update Task</button>
+    </form>
+{% endblock %}
