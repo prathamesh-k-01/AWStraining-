@@ -1,13 +1,84 @@
 {% extends "layout.html" %}
 
 {% block content %}
+    <style>
+        ul {
+            list-style-type: none;
+            padding: 0;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        li {
+            background-color: #fff;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        li strong {
+            font-size: 1.5em;
+            display: block;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        li p {
+            font-size: 1.2em;
+            color: #666;
+            margin-bottom: 30px;
+        }
+        li .status {
+            font-weight: bold;
+            color: #28a745;
+            margin-bottom: 10px;
+        }
+        li .status.not-done {
+            color: #dc3545;
+        }
+        li a {
+            text-decoration: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            margin-right: 10px;
+            font-size: 1em;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        li a.edit {
+            background-color: #007bff;
+            color: white;
+        }
+        li a.edit:hover {
+            background-color: #0056b3;
+        }
+        li a.delete {
+            background-color: #dc3545;
+            color: white;
+        }
+        li a.delete:hover {
+            background-color: #c9302c;
+        }
+        @media (max-width: 600px) {
+            li {
+                padding: 15px;
+            }
+            li strong {
+                font-size: 1.3em;
+            }
+            li p {
+                font-size: 1.1em;
+            }
+        }
+    </style>
+
     <ul>
         {% for task in tasks %}
         <li>
-            <strong>{{ task['title'] }}</strong> - {{ 'Done' if task['done'] else 'Not Done' }}
+            <strong>{{ task['title'] }}</strong>
+            <div class="status {{ 'not-done' if not task['done'] else '' }}">
+                {{ 'Done' if task['done'] else 'Not Done' }}
+            </div>
             <p>{{ task['description'] }}</p>
-            <a href="{{ url_for('edit_task', task_id=task['id']) }}">Edit</a>
-            <a href="{{ url_for('confirm_delete', task_id=task['id']) }}">Delete</a>
+            <a href="{{ url_for('edit_task', task_id=task['id']) }}" class="edit">Edit</a>
+            <a href="{{ url_for('confirm_delete', task_id=task['id']) }}" class="delete">Delete</a>
         </li>
         {% endfor %}
     </ul>

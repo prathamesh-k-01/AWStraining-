@@ -5,6 +5,114 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>To-Do List</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        header {
+            background-color: rgba(0, 0, 0, 0.856);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            width: 100%;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            margin: 0;
+            font-size: 2.5em;
+            margin-right: 1000px;
+            margin-top: 10px;
+        }
+        nav {
+            margin-top: 1px;
+        }
+        nav a {
+            text-decoration: none;
+            padding: 40px -60px;
+            border-radius: 5px;
+            margin: -60px -450px 0 500px;
+            font-size: 1.2em;
+            transition: background-color 0.3s ease;
+            color: white;
+            
+        }
+        nav a:hover {
+            text-decoration: none;
+        }
+        main {
+            max-width: 800px;
+            width: 100%;
+            padding: 40px;
+            margin-top: 20px;
+            /* background-color: white; */
+            /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
+            border-radius: 10px;
+        }
+        .flashes {
+            list-style-type: none;
+            padding: 0;
+            margin-bottom: 20px;
+        }
+        .flashes li {
+            background-color: #f8d7da;
+            color: #721c24;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        .flashes li.success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        .flashes li.info {
+            background-color: #cce5ff;
+            color: #004085;
+        }
+
+         form {
+            display: flex;
+            flex-direction: column;
+        }
+        form input {
+            margin-bottom: 15px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+        form button {
+            background-color: #007bff;
+            color: white;
+            padding: 15px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        form button:hover {
+            background-color: #0056b3;
+        }
+        .register-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .register-link a {
+            color: #007bff;
+            text-decoration: none;
+            font-size: 1em;
+            transition: color 0.3s ease;
+        }
+        .register-link a:hover {
+            color: #0056b3;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -22,9 +130,16 @@
                         <li class="{{ category }}">{{ message }}</li>
                     {% endfor %}
                 </ul>
+
+               
             {% endif %}
+            
         {% endwith %}
-        {% block content %}{% endblock %}
+        
+        {% block content %}
+       {% endblock %}
+
+       
     </main>
 </body>
 </html>

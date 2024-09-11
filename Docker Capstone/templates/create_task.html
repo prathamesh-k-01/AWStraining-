@@ -1,6 +1,70 @@
 {% extends "layout.html" %}
 
 {% block content %}
+    <style>
+        form {
+            display: flex;
+            flex-direction: column;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            margin-top: -20px;
+            text-align: center;
+            font-size: 2em;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0 20px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1em;
+            background-color: #f9f9f9;
+            transition: border-color 0.3s ease;
+        }
+        input[type="text"]:focus, textarea:focus {
+            border-color: #007bff;
+        }
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        label {
+            display: flex;
+            align-items: center;
+            font-size: 1.1em;
+            margin-bottom: 20px;
+        }
+        input[type="checkbox"] {
+            margin-right: 10px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        @media (max-width: 600px) {
+            form {
+                padding: 15px;
+            }
+        }
+    </style>
+
     <h2>Create New Task</h2>
     <form action="{{ url_for('create_task') }}" method="post">
         <input type="text" name="title" placeholder="Title" required>

@@ -1,10 +1,80 @@
 {% extends "layout.html" %}
 
 {% block content %}
+    <style>
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            /* background-color: #fff; */
+            border-radius: 10px;
+            /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
+        }
+        h2 {
+            text-align: center;
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        p {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        p strong {
+            color: #d9534f;
+        }
+        button {
+            background-color: #d9534f;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-right: 20px;
+        }
+        button:hover {
+            background-color: #c9302c;
+        }
+        a {
+            text-decoration: none;
+            color: #007bff;
+            padding: 10px 20px;
+            font-size: 1.2em;
+            transition: color 0.3s ease;
+        }
+        a:hover {
+            color: #0056b3;
+        }
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        @media (max-width: 600px) {
+            form {
+                padding: 15px;
+            }
+            .action-buttons {
+                flex-direction: column;
+            }
+            button, a {
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+
     <h2>Confirm Deletion</h2>
     <p>Are you sure you want to delete the task "<strong>{{ task['title'] }}</strong>"?</p>
     <form action="{{ url_for('confirm_delete', task_id=task['id']) }}" method="post">
-        <button type="submit">Yes, Delete</button>
-        <a href="{{ url_for('index') }}">Cancel</a>
+        <div class="action-buttons">
+            <button type="submit">Yes, Delete</button>
+            <a href="{{ url_for('index') }}">Cancel</a>
+        </div>
     </form>
 {% endblock %}
